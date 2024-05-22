@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email from Medusa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        @font-face {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif;
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        }
+
+        body {
+            margin: 5px;
+            background-color: rgba(217, 217, 217, 0.25999999046325684);
+            font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif;
+        }
+
+        .layout {
+            position: relative;
+            width: 60%;
+            margin: 50px auto;
+        }
+
+        .theme-color {
+            color: #037b86;
+        }
+
+        .margin-y {
+            margin: 25px auto;
+        }
+
+        .margin-y-2 {
+            margin: 50px auto;
+        }
+
+        .display-block {
+            display: block;
+        }
+
+        .title {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 35px;
+            letter-spacing: 0em;
+            text-align: left;
+            /* color: #329DFF; */
+        }
+
+        .template-header {
+            background-color: #F2F7FD;
+            color: #fff;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            padding: 50px 80px !important;
+            /* background-image: url('https://i.ibb.co/hYd7yWb/bg-image.png'); */
+            background-position: 20%;
+        }
+
+        .template-header img {
+            height: 35px;
+            width: auto;
+        }
+
+        .template-content {
+            /* padding: 0px 0px 10px 0px; */
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: justify;
+            /* border: 1px solid #DCE1EA; */
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.07);
+            /* margin-top: 20px; */
+        }
+
+        .template-content-inner {
+            padding: 0px 80px !important;
+        }
+
+        .greeting {
+            color: #202020;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .verify-button {
+            padding: 15px 20px;
+            width: 276.29px;
+            height: 69.47px;
+            text-decoration: none;
+            background: #284DE3;
+            border-radius: 8px;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            /* or 31px */
+            margin-top: 80px;
+            color: #FFFFFF;
+        }
+
+        .button_icon {
+            padding-top: 8px !important;
+        }
+
+        .greeting-info {
+            color: #202020;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+        .footer-info {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 200;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .greeting-info-two {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 21px;
+            /* identical to box height */
+            /* Status/Teal 1 */
+            color: #00B2A9;
+            cursor: pointer;
+        }
+
+        .underline {
+            text-decoration-line: underline;
+        }
+
+        .template-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .otp-code {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            color: #329DFF;
+        }
+
+        .template-image img {
+            height: auto;
+            width: 100%;
+        }
+
+        .footer-img {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: -15px;
+        }
+
+        .footer-img img {
+            height: 50%;
+            width: auto;
+            padding: 1px 5px;
+        }
+
+        #footer-right {
+            display: block;
+        }
+
+        .template-footer {
+            background-color: #242424;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .border {
+            padding: 25px 0px;
+            padding-bottom: 70px;
+            border-bottom: 1px solid #F2FBFF;
+        }
+
+        .hydro-end-image {
+            margin-top: 25px;
+        }
+
+        .hydro-end {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 18px;
+            padding: 5px 0px;
+            /* identical to box height */
+            /* Grey Shades/Grey 1 */
+            color: #202020;
+        }
+
+        .hydro-end1 {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 20px;
+            padding: 0px 0px;
+            /* identical to box height */
+            /* Grey Shades/Grey 1 */
+            color: #293345;
+        }
+
+        .hydro-end2 {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 200;
+            font-size: 16px;
+            line-height: 30px;
+            padding: 0px 0px;
+            /* identical to box height */
+            /* Grey Shades/Grey 1 */
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .hydro-end3 {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 18px;
+            /* padding: 0px 0px 10px 20px; */
+            margin: 0;
+            color: rgba(19, 15, 73, 1);
+            opacity: 0.4000000059604645;
+        }
+
+        .details {
+            background: #EEF2F8;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            row-gap: 30px;
+            color: #284DE3;
+            padding: 10px 0px;
+            margin: 0;
+            width: 100%;
+        }
+
+        .footer-socials div {
+            padding: 10px 0px;
+            display: flex;
+        }
+
+        .footer-socials a {
+            padding-right: 15px !important;
+            text-decoration: none;
+            color: #284DE3;
+            font-weight: 600;
+            /* display: flex; */
+        }
+
+        .footer-two {
+            width: inherit;
+            padding: 20px 80px !important;
+            margin-top: 40px;
+            background-color: #F2FBFF;
+            border-radius: 0px 0px 10px 10px;
+        }
+
+        .v7693_286265 {
+            width: 100%;
+            margin-top: 104px;
+            background: rgba(217, 217, 217, 0.25999999046325684);
+            opacity: 1;
+            overflow: hidden;
+            padding-left: 30px !important;
+        }
+
+        .v7693_286266 {
+            color: rgba(0, 0, 0, 0.699999988079071);
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .v7693_286267 {
+            color: rgba(0, 0, 0, 0.699999988079071);
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-weight: 300;
+            font-size: 18px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        .v7693_286322 {
+            width: 220px;
+            color: rgba(92, 6, 140, 1);
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            opacity: 1;
+            text-align: left;
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 768px) {
+            .layout {
+                width: 100%;
+            }
+
+            .template-header {
+                padding: 30px 10px !important;
+            }
+
+            .template-content-inner {
+                padding: 10px !important;
+            }
+
+            .footer-socials {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 10px;
+                width: 100%;
+            }
+
+            #footer-right {
+                padding: 10px !important;
+            }
+
+            .footer-two {
+                padding-left: 20px !important;
+            }
+
+            .v7693_286266 {
+                left: 10px !important;
+            }
+
+            .v7693_286267 {
+                left: 10px !important;
+            }
+
+            .footer-two {
+                width: inherit;
+                padding: 20px 10px !important;
+            }
+
+            .template-header {
+                padding: 50px 10px !important;
+            }
+        }
+
+        /* Tablets and Ipads */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .layout {
+                width: 90% !important;
+            }
+
+            .template-header {
+                padding: 40px !important;
+            }
+
+            .template-content-inner {
+                padding: 30px !important;
+            }
+
+            .footer-two {
+                padding-left: 40px !important;
+            }
+
+        }
+
+        .text-primary-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity));
+        }
+
+        .font-600 {
+            font-weight: 600;
+        }
+
+        .text-sm {
+            font-size: 14px;
+        }
+
+        .px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .bg-primary-blue {
+            --tw-bg-opacity: 1;
+            background-color: #007af4;
+        }
+
+        .rounded-lg {
+            border-radius: var(--radius);
+        }
+
+        [type=button],
+        [type=reset],
+        [type=submit],
+        button {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none;
+        }
+
+        [role=button],
+        button {
+            cursor: pointer;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .button-blue {
+            background-color: #007af4;
+            padding: 0.4rem 2rem !important;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            border-color: #007af4;
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+
+</head>
+
+<body
+    style="margin: 5px; background-color: rgba(217, 217, 217, 0.25999999046325684); font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif, sans-serif;">
+    <div class="layout" style="position: relative; min-width: 60%; max-width: 800px; margin: 50px auto;">
+        <header>
+        </header>
+        <div class="template-content"
+            style="background-color: #fff; border-radius: 10px; text-align: justify; box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.07); margin-top: 20px;">
+            <div class="template-header"
+                style="background-color: #F2F7FD; color: #fff; display: flex; justify-content: start; align-items: center; padding: 50px 10px; background-position: 20%;">
+                <div id="footer-right" class="" style="max-width: 200px;">
+                    <a href="https://medusa.com/"><img style="max-width: 200px; width: 100%;"
+                            src="https://i.ibb.co/zRG58fH/medusa-logo-new.png" alt="medusa-logo-new" border="0"></a>
+                </div>
+            </div>
+            <div class="template-content-inner" style="padding: 0px 10px;">
+                <div style="font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif;">
+                    <div class="border"
+                        style="padding: 25px 0px; padding-bottom: 70px; border-bottom: 1px solid #F2FBFF;">
+                        <span>
+                            <img src="https://i.ibb.co/wQL5yJD/icon-1-1.png" alt="icon-1-1" border="0">
+
+                        </span>
+                        <p class="title"
+                            style="font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif; font-style: normal; font-size: 28px; font-weight: 400; line-height: 35px; letter-spacing: 0em; text-align: left;">
+                            Hello Admin,</p>
+                        <p>
+                        <div class="margin-y" style="margin: 25px auto;">
+                            <div class="display-block greeting-info"
+                                style="color: #202020; font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif; font-style: normal; font-weight: 300; font-size: 14px;">
+                                Please find message below.
+                            </div>
+                        </div>
+                        <div class="margin-y" style="margin: 5px auto;">
+                            <h4 style="font-size: 18px; " th:text="${message}"> </h4>
+
+                        </div>
+                    </div>
+                    <div class="footer" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <p class="hydro-end"
+                                style="font-family: 'Poppins', Arial, Helvetica, sans-serif; font-style: normal; font-weight: 400; font-size: 16px; line-height: 18px; padding: 5px 0px; color: #202020;">
+                                <span class="hydro-end1">Medusa Business</span><br>
+                            </p>
+                            <p class="hydro-end3"
+                                style="font-family: 'Poppins', Arial, Helvetica, sans-serif; font-style: normal; font-weight: 300; font-size: 15px; line-height: 18px; margin: 0; color: rgba(19, 15, 73, 1); opacity: 0.4000000059604645;">
+                                <span class="">7A, Idejo street, Victoria Island, Lagos, Nigeria.</span><br>
+                            </p>
+                            <div class="footer-socials"
+                                style="display: flex; flex-direction: row; justify-content: start; align-items: center; flex-wrap: wrap; padding: 10px 0px; margin: 0; width: 100%;">
+                                <div
+                                    style="padding: 10px 0px; padding-right: 10px; display: flex; align-items: center;">
+                                    <img src="https://i.ibb.co/L65vBrs/email-icon.png" alt="email-icon" border="0">
+                                    <a th:href="@{'mailto:medusaops@3lineng.com'}" class="v7693_286322"
+                                        style="height: fit-content; text-decoration: none; font-weight: 600; width: max-content; color: rgba(92, 6, 140, 1); font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 16px; opacity: 1; text-align: left;">medusaops@3lineng.com</a>
+                                </div>
+                                <div
+                                    style="padding: 10px 0px; padding-right: 10px; display: flex; align-items: center;">
+                                    <img src="https://i.ibb.co/4P1W7Hk/email-icon-1.png" alt="phone-icon" border="0">
+                                    <a th:href="@{tel:'07003290000'}" class="v7693_286322"
+                                        style="height: fit-content; text-decoration: none; font-weight: 600; width: max-content; color: rgba(92, 6, 140, 1); font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 500; font-size: 16px; opacity: 1; text-align: left;">07003290000</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-two"
+                style="width: inherit; padding: 20px 10px; margin-top: 40px; background-color: #F2FBFF; border-radius: 0px 0px 10px 10px;">
+                <p class="footer-info"
+                    style="font-family: 'Poppins', Arial, Helvetica, sans-serif, sans-serif; font-style: normal; font-weight: 200; font-size: 16px; letter-spacing: 0.02em; color: rgba(0, 0, 0, 0.7);">
+                    Download mobile application</p>
+                <div class="footer-img"
+                    style="display: flex; flex-direction: row;  flex-wrap: wrap; align-items: center; margin-left: -15px;">
+                    <a href="#"><img src="https://i.ibb.co/5BS7nGh/store-1.png" alt="store-1" border="0"></a>
+                    <a href="#"><img src="https://i.ibb.co/94rcLSr/store-2.png" alt="store-2" border="0"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="v7693_286265"
+        style="width: 100%; height: fit-content; margin-top: 104px; background: rgba(217, 217, 217, 0.25999999046325684); opacity: 1; position: relative; bottom: 0; left: 0px; overflow: hidden; display: flex; flex-direction: column; flex-wrap: wrap; padding: 40px; padding-left: 10px;">
+        <span class="v7693_286266"
+            style="color: rgba(0, 0, 0, 0.699999988079071);  font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 18px; padding-bottom: 40px; opacity: 1; text-align: left;">Copyright
+            © 2023 Medusa. All rights reserved.</span>
+        <span class="v7693_286267"
+            style="color: rgba(0, 0, 0, 0.699999988079071);  font-family: 'Poppins', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 18px; opacity: 1; text-align: left;">7A,
+            Idejo street, Victoria Island, Lagos, Nigeria.</span>
+    </div>
+</body>
+
+</html>
