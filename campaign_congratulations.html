@@ -356,31 +356,15 @@
                                     <div class="text" style="color: rgba(0, 0, 0, .3);">
                                         <h3
                                             style=" font-style: normal; font-size: 25px; font-weight: 600; line-height: 35px; letter-spacing: 0em; text-align: left; font-family: 'Poppins', sans-serif; color: #000000; margin-top: 0;">
-                                            Hello <span th:text="${firstName} ${lastName}"></span>,</h3>
+                                            Hello <span th:text="${storeName}"></span>,</h3>
                                         <h4
                                             style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif;">
-                                            We are happy to inform you that the payment you made has been successfully processed and sent to <span th:text="${storeName}"style="font-weight: 500;"></span>, transaction details are as follows:
+                                            🎉 Congratulations! 🎉
                                         </h4>
 
                                         <h4
-                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif; line-height: 10px;">
-                                            Amount: <span th:text="${amount}"style="font-weight: 500;"></span>
-                                        </h4>
-                                        <h4
-                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif; line-height: 10px;">
-                                            Transaction Reference: <span th:text="${reference}"style="font-weight: 500;"></span>
-                                        </h4>
-                                        <h4
-                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif; line-height: 10px;">
-                                            Date & Time: <span th:text="${date}"style="font-weight: 500;"></span>
-                                        </h4>
-                                        <h4
-                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif; line-height: 10px;">
-                                            Bank: <span th:text="${bank}"style="font-weight: 500;"></span>
-                                        </h4>
-                                        <h4
-                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif; line-height: 10px;">
-                                            Account Number: <span th:text="${accountNumber}"style="font-weight: 500;"></span>
+                                            style="color: #202020; font-style: normal; font-weight: 300; font-size: 18px; font-family: 'poppins', sans-serif;">
+                                            You did it! By hitting your transaction targets, you've earned ₦<span th:text="${amount}"style="font-weight: 500;"> cashback</span>. Keep up the great work, and here’s to more rewards ahead! 🚀💰
                                         </h4>
                                     </div>
                                 </td>
